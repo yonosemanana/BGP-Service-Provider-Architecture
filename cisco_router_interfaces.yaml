@@ -1,0 +1,7 @@
+---
+ - name: Configure L3 interfaces on Cisco routers
+   gather_facts: false
+   hosts: isp_core
+   roles:
+     - cisco-l3-interfaces
+ 

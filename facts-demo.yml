@@ -1,1 +1,16 @@
-- name: "My test playbook"
+---
+- name: My test playbook
+  gather_facts: false
+  hosts: isp_core
+  tasks:
+  
+    - name: Get config from Cisco IOS devices
+      cisco.ios.ios_facts:
+        gather_subset: 
+        - all
+        
+    - name: Display the config
+      debug:
+        msg: "The hostname is {{ansible_net_hostname}} and the software version is {{ansible_net_version}}"
+     
+ 
