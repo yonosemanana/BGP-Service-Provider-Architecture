@@ -1,0 +1,38 @@
+---
+# Tasks file for cisco-ospf-routing
+
+- name: Create OSPF process
+  tags: cisco-ospf-routing
+  cisco.ios.ios_ospfv2:
+    config:
+      processes:
+        - process_id: "{{ospf_processes[0].process_id}}"
+          areas:
+          - area_id: "{{ospf_processes[0].areas[0].area_id}}"
+          auto_cost:
+            reference_bandwidth: "{{ospf_processes[0].auto_cost.reference_bandwidth}}"       # OSPF auto-cost reference bandwidth in Mpbs
+          passive_interfaces: 
+            default: true
+            interface:
+              name: "{{ interfaces | selectattr('descr', 'search', 'Router ID|^CORE|^AGGR|^EDGE') | map(attribute='intf') | list }}"
+              set_interface: false
+          router_id: "{{ interfaces | selectattr('intf', 'equalto', 'Loopback0') | map(attribute='ipv4') | regex_search('(?P<ip>[0-9.]+)/\\S+', '\\g<ip>') | first }}"
+  notify: Save config
+
+- name: Configure OSPF interfaces
+  tags: cisco-ospf-routing
+  cisco.ios.ios_ospf_interfaces:
+    config:
+      - name: "{{port.intf}}"
+        address_family: 
+          - afi: ipv4
+            network:
+              point_to_point: true
+            process:
+              id: "{{ospf_processes[0].process_id}}"
+              area_id: "{{ospf_processes[0].areas[0].area_id}}"
+  when: port.descr | regex_search('Router ID|^CORE|^AGGR|^EDGE') 
+  loop: "{{interfaces}}"
+  loop_control:
+    loop_var: port
+  notify: Save config

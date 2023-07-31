@@ -1,0 +1,6 @@
+---
+# tasks file for cisco-ospf-routing
+
+- name: Configure OSPF routing
+  ansible.builtin.include_tasks: 
+    file: ospf-routing.yml

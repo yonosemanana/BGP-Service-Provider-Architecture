@@ -1,0 +1,7 @@
+---
+
+- name: Configure OSPF routing on Cisco routers
+  gather_facts: false
+  hosts: isp_core, isp_aggregation, isp_edge
+  roles:
+    - cisco-ospf-routing
