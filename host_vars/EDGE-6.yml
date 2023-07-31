@@ -1,0 +1,32 @@
+interfaces:
+  - intf: "Loopback0"
+    descr: "Router ID"
+    enabled: true
+    ipv4: "10.255.0.66/32"
+    
+  - intf: "Ethernet0/0"
+    descr: "AGGR-6"
+    enabled: true
+    ipv4: "10.255.100.186/30"
+    
+  - intf: "Ethernet0/1"
+    descr: "AGGR-7"
+    enabled: true
+    ipv4: "10.255.100.194/30"
+
+  - intf: "Ethernet0/3"
+    descr: "PEER-6"
+    enabled: true
+    ipv4: "10.255.200.77/30"
+    
+  - intf: "Ethernet0/2"
+    descr: "CLIENT-9"
+    enabled: true
+    ipv4: "10.255.200.69/30"
+
+  - intf: "Ethernet1/0"
+    descr: "CLIENT-10"
+    enabled: true
+    ipv4: "10.255.200.73/30"
+    
+

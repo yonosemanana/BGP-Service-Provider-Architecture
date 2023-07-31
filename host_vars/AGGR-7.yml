@@ -1,0 +1,30 @@
+interfaces:
+  - intf: "Loopback0"
+    descr: "Router ID"
+    enabled: true
+    ipv4: "10.255.0.37/32"
+    
+  - intf: "Ethernet2/0"
+    descr: "CORE-2"
+    enabled: true
+    ipv4: "10.255.100.50/30"
+    
+  - intf: "Ethernet1/1"
+    descr: "CORE-5"
+    enabled: true
+    ipv4: "10.255.100.102/30"
+    
+  - intf: "Ethernet0/1"
+    descr: "EDGE-6"
+    enabled: true
+    ipv4: "10.255.100.193/30"
+    
+  - intf: "Ethernet0/0"
+    descr: "EDGE-7"
+    enabled: true
+    ipv4: "10.255.100.197/30"
+
+
+    
+
+    

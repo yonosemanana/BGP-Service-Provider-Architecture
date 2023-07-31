@@ -1,0 +1,28 @@
+---
+# tasks file for cisco-l3-interfaces
+
+- name: Configure interface description and enable
+  tags: cisco-l3-interface
+  cisco.ios.ios_interfaces:
+    config:
+      - name: "{{item.intf}}"
+        description: "{{item.descr}}"
+        enabled: "{{item.enabled}}"
+    state: merged
+  loop: "{{interfaces}}"
+  notify: Save config
+
+
+- name: Configure L3 interfaces
+  tags: cisco-l3-interface
+  cisco.ios.ios_l3_interfaces:
+    config:
+      - name: "{{item.intf}}"
+        ipv4:
+          - address: "{{item.ipv4}}"
+    state: merged
+  when: item.ipv4 is defined
+  loop: "{{interfaces}}"
+  notify: Save config
+
+
