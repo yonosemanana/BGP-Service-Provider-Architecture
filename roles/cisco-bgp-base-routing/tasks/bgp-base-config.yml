@@ -1,0 +1,70 @@
+---
+# tasks file for cisco-bgp-base-routing
+
+- name: Configure BGP routing on Cisco routers - Global BGP config
+  tags: bgp-core, bgp-aggregate, bgp-edge
+  cisco.ios.ios_bgp_global:
+    config:
+      as_number: "{{ bgp_config.as }}"
+      auto_summary: false
+      bgp:
+        router_id: 
+          address: "{{ interfaces | selectattr('intf', 'equalto', 'Loopback0') | map(attribute='ipv4') | regex_search('(?P<ip>[0-9.]+)/\\S+', '\\g<ip>') | first }}"
+        log_neighbor_changes: true
+        always_compare_med: true
+        asnotation: true
+        bestpath_options:
+          compare_routerid: true
+      timers:
+        holdtime: "{{ bgp_config.holdtime }}"
+        keepalive: "{{ bgp_config.keepalive }}"
+  notify: Save config
+        
+
+
+
+- name: Create BGP peer groups - Remote AS, Update-source and Send community
+  tags: bgp-core, bgp-aggregate, bgp-edge
+  cisco.ios.ios_config:
+    lines: 
+      - "neighbor {{ peer_group.name }} peer-group"
+      - "neighbor {{ peer_group.name }} remote-as {{ peer_group.remote_as }}"
+      - "neighbor {{ peer_group.name }} update-source {{ peer_group.update_source }}"
+      - "neighbor {{ peer_group.name }} send-community {{ peer_group.send_community }}"
+    parents: "router bgp {{ bgp_config.as }}"
+  loop: "{{ bgp_peer_groups }}"
+  loop_control:
+    loop_var: peer_group
+  notify: Save config
+  
+  
+- name: Create BGP peer groups - RR clients
+  tags: bgp-core, bgp-aggregate, bgp-edge
+  cisco.ios.ios_config:
+    lines: 
+      - "neighbor {{ peer_group.name }} route-reflector-client"
+    parents: "router bgp {{ bgp_config.as }}"
+  when: peer_group.rr_client is defined and peer_group.rr_client == true
+  loop: "{{ bgp_peer_groups }}"
+  loop_control:
+    loop_var: peer_group
+  notify: Save config
+  
+  
+- name: Create BGP peer groups - Next-hop-self
+  tags: bgp-core, bgp-aggregate, bgp-edge
+  cisco.ios.ios_config:
+    lines: 
+      - "neighbor {{ peer_group.name }} next-hop-self"
+    parents: "router bgp {{ bgp_config.as }}"
+  when: peer_group.next_hop_self is defined and peer_group.next_hop_self == true
+  loop: "{{ bgp_peer_groups }}"
+  loop_control:
+    loop_var: peer_group
+  notify: Save config
+  
+  
+  
+
+          
+          

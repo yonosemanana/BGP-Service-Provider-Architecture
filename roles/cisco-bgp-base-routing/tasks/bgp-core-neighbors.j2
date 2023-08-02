@@ -1,0 +1,13 @@
+router bgp {{ bgp_config.as }}
+
+{% for peer in bgp_core %}
+   {% if peer.router_id != routing.router_id %}
+       neighbor {{ peer.router_id}} peer-group Core-iBGP
+   {% endif %}
+{% endfor %}
+
+{% for peer in bgp_aggregation %}
+   {% if peer.name in interfaces | map(attribute='descr') %}
+       neighbor {{ peer.router_id}} peer-group Aggr-RR-client
+   {% endif %}
+{% endfor %}

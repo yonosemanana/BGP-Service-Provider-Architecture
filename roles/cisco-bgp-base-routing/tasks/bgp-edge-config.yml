@@ -1,0 +1,26 @@
+---
+
+- name: Configure BGP neighbors - Edge
+  tags: bgp-edge
+  cisco.ios.ios_config:
+    src: "bgp-edge-neighbors.j2"
+  notify: Save config
+  
+  
+- name: Configure BGP neighbors - Address-family - BGP Aggregation
+  tags: bgp-edge
+  cisco.ios.ios_bgp_address_family:
+    config:
+      as_number: "{{ bgp_config.as }}"
+      address_family:
+        - afi: "ipv4"
+          neighbors:
+            - neighbor_address: "{{ peer.router_id }}"
+              activate: true
+  when: peer.name in interfaces | map(attribute='descr')
+  loop: "{{ bgp_aggregation }}"
+  loop_control:
+    loop_var: peer
+  notify: Save config
+
+

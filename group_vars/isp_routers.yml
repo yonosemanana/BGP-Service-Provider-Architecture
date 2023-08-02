@@ -1,0 +1,52 @@
+  
+ospf_processes:
+  - process_id: 100
+    areas:
+      - area_id: "0"
+    auto_cost:
+      reference_bandwidth: 100000
+    
+    
+bgp_config:
+  { as: "1000", holdtime: 21, keepalive: 7}
+    
+
+
+bgp_core:
+ - { name: CORE-1, router_id: 10.255.0.11 }
+ - { name: CORE-2, router_id: 10.255.0.12 }
+ - { name: CORE-3, router_id: 10.255.0.13 }
+ - { name: CORE-4, router_id: 10.255.0.14 }
+ - { name: CORE-5, router_id: 10.255.0.15 }
+ - { name: CORE-6, router_id: 10.255.0.16 }
+ - { name: CORE-7, router_id: 10.255.0.17 }
+ 
+ 
+bgp_aggregation:
+ - { name: AGGR-1, router_id: 10.255.0.31 }
+ - { name: AGGR-2, router_id: 10.255.0.32 }
+ - { name: AGGR-3, router_id: 10.255.0.33 }
+ - { name: AGGR-4, router_id: 10.255.0.34 }
+ - { name: AGGR-5, router_id: 10.255.0.35 }
+ - { name: AGGR-6, router_id: 10.255.0.36 }
+ - { name: AGGR-7, router_id: 10.255.0.37 }
+ - { name: AGGR-8, router_id: 10.255.0.38 }
+ - { name: AGGR-9, router_id: 10.255.0.39 }
+ 
+ 
+bgp_edge:
+ - { name: EDGE-1, router_id: 10.255.0.61 }
+ - { name: EDGE-2, router_id: 10.255.0.62 }
+ - { name: EDGE-3, router_id: 10.255.0.63 }
+ - { name: EDGE-4, router_id: 10.255.0.64 }
+ - { name: EDGE-5, router_id: 10.255.0.65 }
+ - { name: EDGE-6, router_id: 10.255.0.66 }
+ - { name: EDGE-7, router_id: 10.255.0.67 }
+ - { name: EDGE-8, router_id: 10.255.0.68 }
+ - { name: EDGE-9, router_id: 10.255.0.69 }
+ - { name: EDGE-10, router_id: 10.255.0.70 }
+ - { name: EDGE-11, router_id: 10.255.0.71 }
+ - { name: EDGE-12, router_id: 10.255.0.72 }
+
+
+

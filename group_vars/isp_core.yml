@@ -1,0 +1,6 @@
+
+bgp_peer_groups:
+  - { name: "Core-iBGP", remote_as: "1000", update_source: "Loopback0", send_community: "both" }
+  - { name: "Aggr-RR-client", remote_as: "1000", update_source: "Loopback0", send_community: "both", rr_client: true }
+
+

@@ -2,7 +2,7 @@ interfaces:
   - intf: "Loopback0"
     descr: "Router ID"
     enabled: true
-    ipv4: "10.255.0.71/32"
+    ipv4: "10.255.0.72/32"
     
   - intf: "Ethernet0/2"
     descr: "AGGR-3"
@@ -36,12 +36,7 @@ interfaces:
     
     
     
-        
-    
-ospf_processes:
-  - process_id: 100
-    areas:
-      - area_id: "0"
-    auto_cost:
-      reference_bandwidth: 100000
-    
+
+routing:
+  network_level: "EDGE"
+  router_id: "10.255.0.72"

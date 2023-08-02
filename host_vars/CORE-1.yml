@@ -39,13 +39,10 @@ interfaces:
     enabled: true
     ipv4: "10.255.100.25/30"    
     
+
+routing:
+  network_level: "CORE"
+  router_id: "10.255.0.11"
     
-    
-    
-ospf_processes:
-  - process_id: 100
-    areas:
-      - area_id: "0"
-    auto_cost:
-      reference_bandwidth: 100000
-    
+
+  
