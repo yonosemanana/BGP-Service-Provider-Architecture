@@ -2,6 +2,7 @@
 # Configure prefix-lists for eBGP routing
 
 - name: Import prefix-lists from file
+  tags: cisco-prefix-lists
   ansible.builtin.set_fact:
     ebgp_prefix_lists: "{{ lookup('file', 'ebgp-prefix-lists.json') | from_json }}"
 
@@ -10,6 +11,7 @@
 #    var: ebgp_prefix_lists
 
 - name: Configure prefix-lists for eBGP on EDGE routers
+  tags: cisco-prefix-lists
   cisco.ios.ios_prefix_lists:
     config: "{{ ebgp_prefix_lists }}"
   notify: Save config 

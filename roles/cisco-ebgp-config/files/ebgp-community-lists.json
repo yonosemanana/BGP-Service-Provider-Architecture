@@ -1,0 +1,73 @@
+[
+	{ "name": "Clients-Prefixes",
+	  "communities": 
+	  	[ "1000:300" ]
+	  	
+	},
+	
+	{ "name": "Peers-Prefixes",
+	  "communities": 
+	  	[ "1000:200" ]
+	  	
+	},
+	
+	{ "name": "Uplinks-Prefixes",
+	  "communities": 
+	  	[ "1000:100" ]
+	  	
+	},
+	
+	{ "name": "AS1000",
+	  "communities": 
+	  	[ "1000:1000" ]
+	  	
+	},
+	
+	{ "name": "Set_LocalPref_50",
+	  "communities": 
+	  	[ "1000:50" ]
+	  	
+	},
+	
+	{ "name": "BlackHole",
+	  "communities": 
+	  	[ "1000:666" ]
+	  	
+	},
+	
+	{ "name": "Do_Not_Advertise_Uplinks",
+	  "communities": 
+	  	[ "1000:0" ]
+	  	
+	},
+	
+	{ "name": "Add_AS-Path_Prepend_1",
+	  "communities": 
+	  	[ "1000:10001" ]
+	  	
+	},
+	
+	{ "name": "Add_AS-Path_Prepend_2",
+	  "communities": 
+	  	[ "1000:10002" ]
+	  	
+	},
+	
+	{ "name": "Add_AS-Path_Prepend_3",
+	  "communities": 
+	  	[ "1000:10003" ]
+	  	
+	},
+	
+	{ "name": "Add_AS-Path_Prepend_4",
+	  "communities": 
+	  	[ "1000:10004" ]
+	  	
+	},
+	
+	{ "name": "Add_AS-Path_Prepend_5",
+	  "communities": 
+	  	[ "1000:10005" ]
+	  	
+	}
+]

@@ -2,5 +2,11 @@
 # tasks file for cisco-ebgp-config
 
 - name: Configure prefix-lists for eBGP on Cisco routers
+  tags: cisco-prefix-lists
   ansible.builtin.include_tasks:
     file: ebgp-prefix-lists.yml
+
+- name: Configure BGP community-lists for eBGP on Cisco routers
+  tags: cisco-community-lists
+  ansible.builtin.include_tasks:
+    file: ebgp-community-lists.yml

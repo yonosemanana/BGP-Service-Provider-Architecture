@@ -1,0 +1,33 @@
+---
+# Configure BGP community-lists for eBGP routing
+
+- name: Import BGP community-lists from JSON file
+  tags: cisco-community-lists
+  ansible.builtin.set_fact:
+    ebgp_community_lists: "{{ lookup('file','ebgp-community-lists.json') | from_json }}"
+
+- name: Enable BGP community new format
+  tags: cisco-community-lists
+  cisco.ios.ios_config:
+    lines:
+      - "ip bgp-community new-format"
+  notify: Save config
+
+- name: Delete old BGP communities
+  tags: cisco-community-lists
+  cisco.ios.ios_config:
+    lines:
+      - "no ip community-list standard Clients-Prefixes permit 1000:3000"
+      - "no ip community-list standard Peers-Prefixes permit 1000:2000"
+      - "no ip community-list standard Uplinks-Prefixes permit 1000:1000"
+
+- name: Configure BGP community-lists
+  tags: cisco-community-lists
+  # Using Named community-lists only!
+  cisco.ios.ios_config:
+    lines:
+      - "ip community-list standard {{ item[0].name }} permit {{ item[1] }}"
+  with_subelements:
+    - "{{ ebgp_community_lists }}"
+    - communities
+  notify: Save config
