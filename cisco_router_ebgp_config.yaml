@@ -1,0 +1,9 @@
+---
+# Playbook for eBGP configuration on EDGE routers
+
+- name: Create objects for BGP policies
+  gather_facts: false
+  hosts: isp_edge
+  roles:
+    - cisco-ebgp-config 
+

@@ -35,6 +35,12 @@ interfaces:
     ipv4: "10.255.200.13/30"
 
 
+  - intf: "Loopback1"
+    descr: "eBGP public network"
+    enabled: true
+    ipv4: "100.100.1.1/24"
+    
+    
 
 routing:
   network_level: "EDGE"

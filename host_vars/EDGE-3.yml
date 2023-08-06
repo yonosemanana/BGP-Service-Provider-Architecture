@@ -24,13 +24,17 @@ interfaces:
     enabled: true
     ipv4: "10.255.200.45/30"
      
-  - intf: "Ethernet1/2"
+  - intf: "Ethernet2/0"
     descr: "CLIENT-4"
     enabled: true
     ipv4: "10.255.200.49/30"
 
 
 
+  - intf: "Loopback1"
+    descr: "eBGP public network"
+    enabled: true
+    ipv4: "100.100.3.1/24"
     
 
 routing:

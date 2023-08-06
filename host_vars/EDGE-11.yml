@@ -34,7 +34,12 @@ interfaces:
     enabled: true
     ipv4: "10.255.200.129/30"
     
-    
+
+
+  - intf: "Loopback1"
+    descr: "eBGP public network"
+    enabled: true
+    ipv4: "100.100.11.1/24"    
     
 
 routing:

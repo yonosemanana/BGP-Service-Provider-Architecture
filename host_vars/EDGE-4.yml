@@ -26,6 +26,13 @@ interfaces:
 
 
 
+  - intf: "Loopback1"
+    descr: "eBGP public network"
+    enabled: true
+    ipv4: "100.100.4.1/24"
+
+
+
 routing:
   network_level: "EDGE"
   router_id: "10.255.0.64"

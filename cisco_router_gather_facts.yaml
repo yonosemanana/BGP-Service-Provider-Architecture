@@ -1,0 +1,40 @@
+---
+
+- name: Playbook to gather facts from Cisco routers
+  gather_facts: true
+  hosts: isp_core, isp_aggregation, isp_edge
+ 
+  tasks:
+
+    - name: Print min device info
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Gather all facts on Cisco IOS router
+      cisco.ios.ios_facts:
+        gather_subset: all
+      register: my_all_facts
+
+    - name: Print all facts about devices
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Print basic info about device
+      ansible.builtin.debug:
+        msg: "Device hostname: {{ ansible_facts['net_hostname'] }} \n
+        Device serial number: {{ ansible_facts['net_serialnum'] }} \n
+        Device OS: {{ ansible_facts.net_system }} {{ ansible_facts.net_version }}"
+
+    - name: Print info about device interfaces
+      ansible.builtin.debug:
+        msg: "Interface: {{ item.key }} \n
+        Description: {{ item.value['description'] }} \n
+        Line is {{ item.value['lineprotocol'] }} \n
+        IP address {{ item.value['ipv4'][0]['address'] }}/{{ item.value['ipv4'][0]['subnet'] }}"
+      when: item.value['description'] != None and item.value['ipv4'][0] is defined
+      loop: "{{ my_all_facts.ansible_facts.ansible_net_interfaces | dict2items }}"
+
+    - name: Save info about interfaces on disk
+      ansible.builtin.copy:
+        content: "{{ my_all_facts.ansible_facts.ansible_net_interfaces }}"
+        dest: "tmp/{{ my_all_facts.ansible_facts.ansible_net_hostname }}_interfaces.txt"
