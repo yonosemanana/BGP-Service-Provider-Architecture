@@ -1,0 +1,27 @@
+
+
+EDGE-4: 
+  - name: CLIENT-11
+    prefix: 100.100.111.0/24
+    next_hop: 10.255.200.58
+    
+EDGE-5: 
+  - name: CLIENT-12
+    prefix: 100.100.112.0/24
+    next_hop: 10.255.200.66
+
+EDGE-11: 
+  - name: CLIENT-13
+    prefix: 100.100.113.0/24
+    next_hop: 10.255.200.126
+  - name: CLIENT-14
+    prefix: 100.100.114.0/24
+    next_hop: 10.255.200.130
+    
+EDGE-12: 
+  - name: CLIENT-14
+    prefix: 100.100.114.0/24
+    next_hop: 10.255.200.142
+  - name: CLIENT-15
+    prefix: 100.100.115.0/24
+    next_hop: 10.255.200.146

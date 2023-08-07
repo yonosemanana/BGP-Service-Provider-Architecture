@@ -1,0 +1,35 @@
+---
+# Configure Static routes to Clients without BGP and redistribute them to BGP
+
+- name: Import info about Static routes to Clients from file
+  tags: cisco-bgp-redistribute-static
+  ansible.builtin.set_fact:
+    static_routes: "{{ lookup('file', 'clients-static-routes.yaml') | from_yaml }}"
+
+- name: Create Static routes to Clients
+  tags: cisco-bgp-redistribute-static
+  cisco.ios.ios_static_routes:
+    config:
+      - address_families:
+          - afi: ipv4
+            routes:
+              - dest: "{{ item.prefix }}"
+                next_hops:
+                  - forward_router_address: "{{ item.next_hop }}"
+                    name: "{{ item.name }}"
+  loop: "{{ static_routes[inventory_hostname] | default([]) }}"
+  notify: Save config
+
+- name: Redistribute static routes to BGP
+  tags: cisco-bgp-redistribute-static
+  cisco.ios.ios_bgp_address_family:
+    config:
+      as_number: "1000"
+      address_family:
+        - afi: ipv4
+          redistribute:
+            - static:
+                ip: true
+                route_map: "AS1000-to-BGP"
+  when: static_routes[inventory_hostname] is defined
+  notify: Save config
