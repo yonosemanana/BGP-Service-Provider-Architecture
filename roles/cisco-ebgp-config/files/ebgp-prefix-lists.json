@@ -88,6 +88,17 @@
 					  "action": "deny"
 					}
 				]
+			},
+			
+			{ "name": "AS1000",
+			  "entries": 
+			  	[ 
+					{ "sequence": "10",
+					  "prefix": "100.100.0.0/16",
+					  "le": "24",
+					  "action": "permit"
+					}
+				]
 			}
 		]
 	}

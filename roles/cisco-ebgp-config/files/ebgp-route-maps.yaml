@@ -1,0 +1,269 @@
+
+- route_map: RM-Clients-IN
+  entries:
+    - sequence: 10
+      action: permit
+      match:
+        community:
+          name: 
+            - "BlackHole"
+      set: 
+        ip:
+          next_hop:
+            address: "192.0.2.1"
+        community:
+          additive: true
+          number: "1000:300"
+          no_export: true
+          
+    - sequence: 20
+      action: permit
+      match:
+        community:
+          name: 
+            - "Do_Not_Advertise_Uplinks"
+      set:
+        community:
+          additive: true
+          number: "1000:300"
+          no_export: true
+    
+ 
+    - sequence: 30
+      action: permit
+      match:
+        community:
+          name: 
+            - "Set_LocalPref_50"
+      set:
+        local_preference: 50
+        community:
+          additive: true
+          number: "1000:300"
+
+
+    - sequence: 40
+      action: permit
+      set:
+        local_preference: 300
+        community:
+          additive: true
+          number: "1000:300"          
+
+
+
+- route_map: RM-Peers-IN
+  entries:
+    - sequence: 10
+      action: permit
+      set: 
+        local_preference: 200
+        community:
+          additive: true
+          number: "1000:200"
+
+
+
+- route_map: RM-Uplinks-IN
+  entries:
+    - sequence: 10
+      action: permit
+      set: 
+        local_preference: 100
+        community:
+          additive: true
+          number: "1000:100"
+          
+
+
+- route_map: RM-Clients-OUT
+  entries:  
+    - sequence: 10
+      action: permit
+      match:
+        community:
+          name:
+            - "AS1000"
+            - "Clients-Prefixes"
+            - "Peers-Prefixes"
+            - "Uplinks-Prefixes"
+    
+
+
+- route_map: RM-Peers-OUT
+  entries:
+    - sequence: 10
+      action: deny
+      match:
+        community:
+          name:
+            - "Do_Not_Advertise_Uplinks"
+            
+    - sequence: 20
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_1"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000
+
+    - sequence: 30
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_2"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000
+
+    - sequence: 40
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_3"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000
+
+    - sequence: 50
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_4"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000 1000
+
+    - sequence: 60
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_5"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000 1000 1000
+              
+    - sequence: 70
+      action: permit
+      match:
+        community:
+          name:
+            - "AS1000"
+            - "Clients-Prefixes"
+
+            
+            
+
+- route_map: RM-Uplinks-OUT
+  entries:
+    - sequence: 10
+      action: deny
+      match:
+        community:
+          name:
+            - "Do_Not_Advertise_Uplinks"
+            
+    - sequence: 20
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_1"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000
+
+    - sequence: 30
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_2"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000
+
+    - sequence: 40
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_3"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000
+
+    - sequence: 50
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_4"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000 1000
+
+    - sequence: 60
+      action: permit
+      match:
+        community:
+          name: 
+            - "Add_AS-Path_Prepend_5"
+      set:
+        as_path:
+          prepend:
+            as_number:
+              - 1000 1000 1000 1000 1000
+              
+    - sequence: 70
+      action: permit
+      match:
+        community:
+          name:
+            - "AS1000"
+            - "Clients-Prefixes"
+
+
+
+- route_map: AS1000-to-BGP
+  entries:
+    - sequence: 10
+      action: permit
+      match:
+        ip:
+          address:
+            prefix_lists:
+              - "AS1000"
+      set:
+        community:
+          additive: true
+          number: "1000:1000"
+
+
+
+
+

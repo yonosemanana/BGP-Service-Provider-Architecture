@@ -43,31 +43,31 @@
 	
 	{ "name": "Add_AS-Path_Prepend_1",
 	  "communities": 
-	  	[ "1000:10001" ]
+	  	[ "1000:10001 1000:300" ]
 	  	
 	},
 	
 	{ "name": "Add_AS-Path_Prepend_2",
 	  "communities": 
-	  	[ "1000:10002" ]
+	  	[ "1000:10002 1000:300" ]
 	  	
 	},
 	
 	{ "name": "Add_AS-Path_Prepend_3",
 	  "communities": 
-	  	[ "1000:10003" ]
+	  	[ "1000:10003 1000:300" ]
 	  	
 	},
 	
 	{ "name": "Add_AS-Path_Prepend_4",
 	  "communities": 
-	  	[ "1000:10004" ]
+	  	[ "1000:10004 1000:300" ]
 	  	
 	},
 	
 	{ "name": "Add_AS-Path_Prepend_5",
 	  "communities": 
-	  	[ "1000:10005" ]
+	  	[ "1000:10005 1000:300" ]
 	  	
 	}
 ]

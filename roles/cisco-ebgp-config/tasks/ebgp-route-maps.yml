@@ -1,0 +1,19 @@
+---
+# Configure route-maps for eBGP on EDGE routers
+
+- name: Import route-maps from YAML file
+  tags: cisco-route-maps
+  ansible.builtin.set_fact:
+    ebgp_route_maps: "{{ lookup('file', 'ebgp-route-maps.yaml') | from_yaml }}"
+
+#- name: Print variable with imported route-map (for Debugging)
+#  tags: cisco-route-maps
+#  ansible.builtin.debug:
+#    var: ebgp_route_maps
+
+- name: Create standard route-map on EDGE routers
+  tags: cisco-route-maps
+  cisco.ios.ios_route_maps:
+    config: "{{ ebgp_route_maps }}"
+    state: overridden
+  notify: Save config
