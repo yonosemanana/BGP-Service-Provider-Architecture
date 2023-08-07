@@ -1,0 +1,40 @@
+---
+# Configure eBGP sessions with Uplinks, Peers and Clients
+
+- name: Import eBGP sessions info
+  tags: cisco-ebgp-sessions
+  ansible.builtin.set_fact:
+    all_ebgp_sessions: "{{ lookup('file', 'ebgp-all-sessions.yaml') | from_yaml }}"
+
+#- name: Debugging
+#  tags: cisco-ebgp-sessions
+#  ansible.builtin.debug:
+#    var: inventory_hostname 
+
+- name: Configure eBGP sessions on EDGE routers
+  tags: cisco-ebgp-sessions
+  cisco.ios.ios_bgp_address_family:
+    config: 
+      as_number: "1000"
+      address_family:
+        - afi: ipv4
+          neighbors: 
+            - description: "{{ neighbor.name }}" 
+              neighbor_address: "{{ neighbor.peer_ip }}"
+              remote_as: "{{ neighbor.remote_as }}"
+              activate: true
+              prefix_lists:
+                - in: true
+                  name: "{{ neighbor.prefix_list_in }}"
+              route_maps:
+                - in: true
+                  name: "{{ neighbor.route_map_in }}"
+                - out: true
+                  name: "{{ neighbor.route_map_out }}"
+              send_community:
+                both: true
+  loop: "{{ all_ebgp_sessions[inventory_hostname] }}"
+  loop_control:
+    loop_var: neighbor
+  notify: Save config
+

@@ -1,0 +1,290 @@
+
+{ EDGE-1:  
+        [ 
+          { name: UPLINK-1,
+            peer_ip: 10.255.200.2,
+            remote_as: 100,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                     
+          { name: UPLINK-2,
+            peer_ip: 10.255.200.6,
+            remote_as: 200,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                           
+          
+          { name: CLIENT-1,
+            peer_ip: 10.255.200.10,
+            remote_as: 20100,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           },
+                                
+          { name:  CLIENT-2,
+            peer_ip: 10.255.200.14,
+            remote_as: 20200,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+          
+          ],
+          
+  EDGE-2:  
+        [ 
+          { name: UPLINK-1,
+            peer_ip: 10.255.200.18,
+            remote_as: 100,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                     
+          { name: UPLINK-2,
+            peer_ip: 10.255.200.22,
+            remote_as: 200,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },    
+          
+          { name: PEER-1,
+            peer_ip: 10.255.200.26,
+            remote_as: 10100,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                     
+          { name: PEER-2,
+            peer_ip: 10.255.200.30,
+            remote_as: 10200,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                          
+          
+          { name: CLIENT-2,
+            peer_ip: 10.255.200.34,
+            remote_as: 20200,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           },
+                                
+          { name:  CLIENT-3,
+            peer_ip: 10.255.200.38,
+            remote_as: 20300,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+          
+          ],
+          
+  EDGE-3:  
+        [ { name: PEER-1,
+            peer_ip: 10.255.200.42,
+            remote_as: 10100,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                     
+          { name: PEER-2,
+            peer_ip: 10.255.200.46,
+            remote_as: 10200,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                          
+          
+                                
+          { name:  CLIENT-4,
+            peer_ip: 10.255.200.50,
+            remote_as: 20400,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+          
+          ],
+          
+  EDGE-4:  
+        [ { name: PEER-7,
+            peer_ip: 10.255.200.54,
+            remote_as: 10700,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          }                               
+          
+          ],
+          
+  EDGE-5:  
+        [ { name: PEER-7,
+            peer_ip: 10.255.200.62,
+            remote_as: 10700,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          }                               
+          
+          ],
+          
+  EDGE-6:  
+        [ { name: PEER-6,
+            peer_ip: 10.255.200.78,
+            remote_as: 10600,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                     
+          { name:  CLIENT-9,
+            peer_ip: 10.255.200.70,
+            remote_as: 20900,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           },                 
+                                
+          { name:  CLIENT-10,
+            peer_ip: 10.255.200.74,
+            remote_as: 21000,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+          
+          ],                     
+
+  EDGE-7:  
+        [ { name: PEER-6,
+            peer_ip: 10.255.200.82,
+            remote_as: 10600,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          }                               
+          
+          ],
+
+  EDGE-8:  
+        [ 
+          { name: UPLINK-3,
+            peer_ip: 10.255.200.86,
+            remote_as: 300,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                                
+          
+          { name: PEER-3,
+            peer_ip: 10.255.200.90,
+            remote_as: 10300,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                                         
+          { name: CLIENT-5,
+            peer_ip: 10.255.200.94,
+            remote_as: 20500,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+         ],
+         
+  EDGE-9:  
+        [ 
+          { name: UPLINK-3,
+            peer_ip: 10.255.200.98,
+            remote_as: 300,
+            route_map_in: RM-Uplinks-IN,
+            route_map_out: RM-Uplinks-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                                
+          
+          { name: PEER-3,
+            peer_ip: 10.255.200.102,
+            remote_as: 10300,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                               
+                                         
+          { name: CLIENT-6,
+            peer_ip: 10.255.200.106,
+            remote_as: 20600,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           },
+           
+          { name: CLIENT-7,
+            peer_ip: 10.255.200.110,
+            remote_as: 20700,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+         ],
+                  
+  EDGE-10:  
+        [                                
+          { name: CLIENT-8,
+            peer_ip: 10.255.200.114,
+            remote_as: 20800,
+            route_map_in: RM-Clients-IN,
+            route_map_out: RM-Clients-OUT,
+            prefix_list_in: eBGP-filter-IN,
+           }
+         ],
+
+  EDGE-11:  
+        [ 
+          { name: PEER-4,
+            peer_ip: 10.255.200.118,
+            remote_as: 10400,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                                
+          
+          { name: PEER-5,
+            peer_ip: 10.255.200.122,
+            remote_as: 10500,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          }
+        ],
+
+  EDGE-12:  
+        [ 
+          { name: PEER-4,
+            peer_ip: 10.255.200.134,
+            remote_as: 10400,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          },                                
+          
+          { name: PEER-5,
+            peer_ip: 10.255.200.138,
+            remote_as: 10500,
+            route_map_in: RM-Peers-IN,
+            route_map_out: RM-Peers-OUT,
+            prefix_list_in: eBGP-filter-IN
+          }
+        ]
+                                                            
+}
+

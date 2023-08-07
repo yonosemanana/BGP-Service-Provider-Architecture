@@ -20,3 +20,18 @@
   tags: cisco-static-bgp-blackhole
   ansible.builtin.include_tasks:
     file: static-bgp-blackhole.yml
+
+- name: Add own networks to BGP process
+  tags: cisco-bgp-networks
+  ansible.builtin.include_tasks:
+    file: bgp-networks.yml
+
+- name: Configure eBGP session with Uplinks, Peers, Clients
+  tags: cisco-ebgp-sessions
+  ansible.builtin.include_tasks:
+    file: ebgp-sessions.yml
+
+- name: Redistribute Clients Static routes to BGP
+  tags: cisco-bgp-redistribute-static
+  ansible.builtin.include_tasks:
+    file: bgp-redistribute-static.yml

@@ -15,5 +15,4 @@
   tags: cisco-route-maps
   cisco.ios.ios_route_maps:
     config: "{{ ebgp_route_maps }}"
-    state: overridden
   notify: Save config
