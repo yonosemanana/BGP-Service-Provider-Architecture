@@ -10,3 +10,13 @@
   tags: cisco-community-lists
   ansible.builtin.include_tasks:
     file: ebgp-community-lists.yml
+
+- name: Configure route-maps for eBGP on Cisco routers
+  tags: cisco-route-maps
+  ansible.builtin.include_tasks:
+    file: ebgp-route-maps.yml
+
+- name: Configure static route to Null0 for BGP BlackHole
+  tags: cisco-static-bgp-blackhole
+  ansible.builtin.include_tasks:
+    file: static-bgp-blackhole.yml

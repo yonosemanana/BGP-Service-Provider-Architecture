@@ -1,0 +1,19 @@
+---
+# Configure static route to Null0 for BGP BlackHole
+# This static route is used together with BGP community 1000:666: route-maps IN match the community
+# and set IP next-hop to the BlackHole prefix 192.0.2.1.
+# The static route points this BlackHole prefix 192.0.2.1/32 to Null0
+
+
+- name: Configure static route to Null0 for BGP BlackHole
+  tags: cisco-static-bgp-blackhole
+  cisco.ios.ios_static_routes:
+    config: 
+      - address_families:
+          - afi: ipv4
+            routes:
+              - dest: "{{ item.prefix }}"
+                next_hops:
+                  - interface: "{{ item.interface }}"
+  loop: "{{ bgp_blackhole_static_route }}"
+  notify: Save config
