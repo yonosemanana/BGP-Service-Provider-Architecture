@@ -45,3 +45,7 @@ interfaces:
 routing:
   network_level: "EDGE"
   router_id: "10.255.0.69"
+  bgp_networks:
+    - network: "100.100.9.0"
+      mask: "255.255.255.0"
+      

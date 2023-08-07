@@ -1,0 +1,16 @@
+---
+# Configure advertising of own BGP networks
+
+- name: Add own networks to BGP process
+  tags: cisco-bgp-networks
+  cisco.ios.ios_bgp_address_family:
+    config:
+      as_number: "1000"
+      address_family:
+        - afi: ipv4
+          networks:
+            - address: "{{ item.network }}"
+              mask: "{{ item.mask }}"
+              route_map: "AS1000-to-BGP"
+  loop: "{{ routing.bgp_networks }}"
+  notify: Save config
