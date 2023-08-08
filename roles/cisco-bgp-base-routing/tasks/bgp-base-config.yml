@@ -62,7 +62,14 @@
   loop_control:
     loop_var: peer_group
   notify: Save config
-  
+
+
+- name: Enable BGP community new format
+  tags: cisco-community-lists
+  cisco.ios.ios_config:
+    lines:
+      - "ip bgp-community new-format"
+  notify: Save config
   
   
 
