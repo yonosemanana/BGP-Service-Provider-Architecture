@@ -1,0 +1,21 @@
+--- 
+# This is my Test playbook
+
+- name: Connect to network devices via HTTP (instead of default SSH)
+  hosts: isp_switches
+  gather_facts: false
+  vars:
+    ansible_connection: ansible.netcommon.httpapi # ansible.netcommon.network_cli
+
+  tasks:
+
+    - name: Gather facts from Cisco IOS switches
+      cisco.ios.ios_facts:
+        gather_subset: all
+      debugger: on_failed
+
+    - name: Print some info about Cisco switches
+      ansible.builtin.debug:
+        msg: "Hostname: {{ ansible_net_hostname}}, IOS version: {{ ansible_net_version }}"
+
+ 
