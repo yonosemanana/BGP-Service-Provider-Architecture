@@ -1,23 +1,19 @@
 ---
 # tasks file for cisco-bgp-base-routing
 
-- name: Configure BGP base config
-  ansible.builtin.include_tasks:
-    file: bgp-base-config.yml
+# Configure BGP base config
+- import_tasks: bgp-base-config.yml
     
-- name: Configure BGP neighbors on Core routers
-  ansible.builtin.include_tasks:
-    file: bgp-core-config.yml
+# Configure BGP neighbors on Core routers
+- import_tasks: bgp-core-config.yml
   when: routing.network_level == "CORE"
   
-- name: Configure BGP neighbors on Aggregation routers
-  ansible.builtin.include_tasks:
-    file: bgp-aggr-config.yml
+# Configure BGP neighbors on Aggregation routers
+- ansible.builtin.import_tasks: bgp-aggr-config.yml
   when: routing.network_level == "AGGR"
   
-- name: Configure BGP neighbors on Edge routers
-  ansible.builtin.include_tasks:
-    file: bgp-edge-config.yml
+# Configure BGP neighbors on Edge routers
+- ansible.builtin.import_tasks: bgp-edge-config.yml
   when: routing.network_level == "EDGE"
   
   
